@@ -1,7 +1,7 @@
 import feedparser
 import pathlib
 import re
-import os
+import time
 
 root = pathlib.Path(__file__).parent.resolve()
 
@@ -20,7 +20,7 @@ def fetch_blog_entries():
         {
             "title": entry["title"],
             "url": entry["id"],
-            "published": entry["published"],
+            "published": time.strftime("%b %d %Y", entry["published_parsed"]),
         }
         for entry in feedparser.parse("https://erdem.pl/rss.xml")["entries"]
     ]
