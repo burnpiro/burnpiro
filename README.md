@@ -7,7 +7,7 @@
 [![Linkedin](https://img.shields.io/static/v1?label=Linkedin&message=%20&color=0e76a8&logo=Linkedin&style=flat-square&logoColor=white)](https://www.linkedin.com/in/kemal-erdem-74837580)
 [![Medium](https://img.shields.io/static/v1?label=Medium&message=%20&color=black&logo=Medium&style=flat-square&logoColor=white)](https://medium.com/@kemalpiro)
 
-<table><tr><td valign="top" width="33%">
+<table><tr><td valign="top" width="50%">
 
 ### About me
 
@@ -15,7 +15,7 @@
 - :pushpin: Interests: Machine Learning, Data Science, IoT, Web Applications
 - :computer: Languages and Tools: <img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/tf-logo.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/python.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/javascript.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/nodejs.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/ubuntu.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/github.png" />
 
-</td><td valign="top" width="34%">
+</td><td valign="top" width="50%">
 
 ### On my blog
 <!-- blog starts -->
