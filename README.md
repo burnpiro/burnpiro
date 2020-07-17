@@ -13,7 +13,7 @@
 
 - :notebook: I’m currently writing in **Python** and **JavaScript**
 - :pushpin: Interests: Machine Learning, Data Science, IoT, Web Applications
-- :computer: Languages and Tools: <img height="20" src="images/tf-logo.png" /><img height="20" src="images/python.png" /><img height="20" src="images/javascript.png" /><img height="20" src="images/nodejs.png" /><img height="20" src="images/ubuntu.png" /><img height="20" src="images/github.png" />
+- :computer: Languages and Tools: <img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/tf-logo.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/python.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/javascript.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/nodejs.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/ubuntu.png" /><img height="20" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/github.png" />
 
 </td><td valign="top" width="34%">
 
