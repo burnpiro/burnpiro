@@ -26,6 +26,4 @@
 * [Understanding Region of Interest - Part 2 (RoI Align)](https://erdem.pl/2020/02/understanding-region-of-interest-part-2-ro-i-align) - Sun, 09 Feb 2020 00:00:00 GMT
 <!-- blog ends -->
 More on [erdem.pl](https://erdem.pl/)
-</td><td valign="top" width="33%">
-
 </td></tr></table>
