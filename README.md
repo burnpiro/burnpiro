@@ -21,11 +21,11 @@
 
 ### On my blog
 <!-- blog starts -->
+* [Evolution of Extreme Learning Machines](https://erdem.pl/2020/07/evolution-of-extreme-learning-machines) - Jul 23 2020
 * [Finding correlations in time series data](https://erdem.pl/2020/06/finding-correlations-in-time-series-data) - Jun 28 2020
 * [Introduction to Extreme Learning Machines](https://erdem.pl/2020/05/introduction-to-extreme-learning-machines) - May 13 2020
 * [t-SNE clearly explained](https://erdem.pl/2020/04/t-sne-clearly-explained) - Apr 13 2020
 * [Making TensorflowJS work faster with WebWorkers.](https://erdem.pl/2020/02/making-tensorflow-js-work-faster-with-web-workers) - Feb 17 2020
-* [Understanding Region of Interest - Part 2 (RoI Align)](https://erdem.pl/2020/02/understanding-region-of-interest-part-2-ro-i-align) - Feb 09 2020
 <!-- blog ends -->
 More on [erdem.pl](https://erdem.pl/) or [Medium](https://medium.com/@kemalpiro)
 </td></tr></table>
