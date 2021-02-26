@@ -1,4 +1,4 @@
-### Hi there, I'm Kemal :squirrel:
+### Hi there, I'm Kemal :shipit:
 
 [![erdem.pl](https://img.shields.io/static/v1?label=erdem.pl&message=%20&color=yellow&logo=&style=flat-square&logoColor=white)](https://erdem.pl/)
 [![kemal@erdem.pl](https://img.shields.io/static/v1?label=kemal@erdem.pl&message=%20&color=red&logo=gmail&style=flat-square&logoColor=white)](mailto:kemal@erdem.pl)
@@ -11,19 +11,21 @@
 
 ### About me
 
-- :notebook: I’m currently writing in **Python** and **JavaScript**
-- :pushpin: Interests: Machine Learning, Data Science, IoT, Web Applications
-- :computer: Languages and Tools: <img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/pytorch.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/tf-logo.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/python.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/javascript.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/nodejs.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/ubuntu.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/github.png" />
+- :notebook: I'm a software engineer
+- :pushpin: Interests: **Machine Learning**, **Data Science**, IoT, **Web Applications**
+- :computer: Languages and Tools: <img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/pytorch.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/tf-logo.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/python.png" /><img style="line-height: 20" height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/javascript.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/nodejs.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/ubuntu.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/github.png" />
+- :microscope: If you want to check my recent project/talks/staff check out [My Work](https://erdem.pl/pages/work) section on the website
+- :bicyclist: When not working/learning I'm probably on the bike... somewhere
 
 </td><td valign="top" width="50%">
 
 ### On my blog
 <!-- blog starts -->
+* [Animal recognition with Siamese Networks and Mean Embeddings](https://erdem.pl/2021/02/animal-recognition-with-siamese-networks-and-mean-embeddings) - Feb 25 2021
+* [DengAI - Data preprocessing](https://erdem.pl/2020/08/deng-ai-data-preprocessing) - Aug 03 2020
+* [DengAI - How to approach Data Science competitions? (EDA)](https://erdem.pl/2020/07/deng-ai-how-to-approach-data-science-competitions-eda) - Jul 31 2020
+* [Evolution of Extreme Learning Machines](https://erdem.pl/2020/07/evolution-of-extreme-learning-machines) - Jul 23 2020
 * [Finding correlations in time series data](https://erdem.pl/2020/06/finding-correlations-in-time-series-data) - Jun 28 2020
-* [Introduction to Extreme Learning Machines](https://erdem.pl/2020/05/introduction-to-extreme-learning-machines) - May 13 2020
-* [t-SNE clearly explained](https://erdem.pl/2020/04/t-sne-clearly-explained) - Apr 13 2020
-* [Making TensorflowJS work faster with WebWorkers.](https://erdem.pl/2020/02/making-tensorflow-js-work-faster-with-web-workers) - Feb 17 2020
-* [Understanding Region of Interest - Part 2 (RoI Align)](https://erdem.pl/2020/02/understanding-region-of-interest-part-2-ro-i-align) - Feb 09 2020
 <!-- blog ends -->
-More on [erdem.pl](https://erdem.pl/)
+More on [erdem.pl](https://erdem.pl/) or [Medium](https://medium.com/@kemalpiro)
 </td></tr></table>
