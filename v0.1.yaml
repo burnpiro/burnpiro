@@ -1,0 +1,914 @@
+openapi: 3.1.0
+info:
+  version: 0.1.0
+  title: zviha.ai
+  termsOfService: https://zhiva.ai/terms/
+  contact:
+    email: ceo@zhiva.ai
+    url: https://zhiva.ai
+  description: >-
+    This is a documentation for _zhiva.ai_ products. Feel free to read the whole
+    thing but here is a:
+
+
+    # Quickstart
+
+
+    If you want to setup everything for your local research please execute
+    following steps:
+
+
+    ### 1. Setup Local PACS server
+
+
+    You have to have something that servers the __DICOM__ data. Usually this is
+    a __PACS server__ with __DICOMWeb__. Setting local server is easy and
+    everything you should do is described in [Setting up Local
+    PACS](/latest/setting-up-local-pacs)
+
+
+    ### 2. Add Local PACS server to application settings
+
+
+    After creating Local PACS you have to [Add that server to the
+    application](/latest/managing-servers-inside-the-dicom-viewer) so you can
+    use its data.
+
+
+    ### 3. Setup your AI Model server
+
+
+    Now you have to have something that makes inferences. If you have your own
+    model (or want to use ours) please follow the instruction: [Setting up Local
+    Model API](/latest/setting-up-local-model-api)
+
+
+    ### 4. Setup proxy server for your AI Model
+
+
+    When you have a model you cannot just connect it directly to the
+    application. You have to __add data providers__ (PACS servers) to it. Reason
+    for that is that sending DICOM data directly from an application is
+    extremely inefficient. How to setup a proxy server is described in [Setting
+    up Model Proxy](/latest/setting-up-model-proxy)
+
+
+    ### 5. Add your models to application settings
+
+
+    At the end you have to add your models that are now accessible through
+    [Model Proxy](/latest/setting-up-model-proxy) to application. Please follow
+    [Managing AI Models inside the DICOM
+    viewer](/latest/managing-ai-models-inside-the-dicom-viewer) guide.
+
+
+    ### 6. You're good to go
+tags:
+  - name: Semantic Segmentation
+    description: Semantic Segmentation API
+  - name: Polygon
+    description: Polygon Annotations
+x-tagGroups:
+  - name: Segmentation
+    section: inferences
+    tags:
+      - Semantic Segmentation
+  - name: Annotations
+    section: inferences
+    tags:
+      - Polygon
+  - name: Predictions
+    section: inferences
+    tags: []
+servers:
+  - url: https://api.zhiva.ai/v1
+paths:
+  /segmentations/{model-uid}/studies/{study-uid}:
+    get:
+      tags:
+        - Semantic Segmentation
+      summary: Get segmentation for study
+      description: >
+        Should return segmentation data for a given segment. Response size
+        should match entire volumen size (`images in series` x `width` x
+        `height`)
+      operationId: getSegmentationForStudyies
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudySegmentation'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /segmentations/{model-uid}/studies/{study-uid}/series/{series-uid}:
+    get:
+      tags:
+        - Semantic Segmentation
+      summary: Get segmentation for series
+      description: >
+        Should return segmentation data for a given segment. Response size
+        should match entire volumen size (`images in series` x `width` x
+        `height`)
+      operationId: getSegmentationForSeries
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+        - name: series-uid
+          in: path
+          description: SeriesInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: SeriesInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.8
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeriesSegmentation'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /segmentations/{model-uid}/studies/{study-uid}/series/{series-uid}/instances/{sop-instance-uid}:
+    get:
+      tags:
+        - Semantic Segmentation
+      summary: Get segmentation for instance
+      description: >
+        Should return segmentation data for a given segment. Response size
+        should match entire volumen size (`width` x `height`)
+      operationId: getSegmentationForInstance
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+        - name: series-uid
+          in: path
+          description: SeriesInstanceUID from study
+          required: true
+          schema:
+            type: string
+            format: SeriesInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.8
+        - name: sop-instance-uid
+          in: path
+          description: SOPInstanceUID from series
+          required: true
+          schema:
+            type: string
+            format: SOPInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.9
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceSegmentation'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /annotations/{model-uid}/studies/{study-uid}:
+    get:
+      tags:
+        - Polygon
+      summary: Get annotations for study
+      description: >
+        Should return annotation data for a given structure. Response size
+        should match entire volumen size (`images in series`)
+      operationId: getAnnotationsForStudies
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyAnnotation'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /annotations/{model-uid}/studies/{study-uid}/series/{series-uid}:
+    get:
+      tags:
+        - Polygon
+      summary: Get annotations for series
+      description: >
+        Should return annotation data for a given structure. Response size
+        should match entire volumen size (`images in series` x `width` x
+        `height`)
+      operationId: getAnnotationsForSeries
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+        - name: series-uid
+          in: path
+          description: SeriesInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: SeriesInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.8
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeriesAnnotation'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /annotations/{model-uid}/studies/{study-uid}/series/{series-uid}/instances/{sop-instance-uid}:
+    get:
+      tags:
+        - Polygon
+      summary: Get annotations for instance
+      description: >
+        Should return annotations data for a given instance. Response size
+        should match entire volumen size (`width` x `height`)
+      operationId: getSegmentationForInstance
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+        - name: series-uid
+          in: path
+          description: SeriesInstanceUID from study
+          required: true
+          schema:
+            type: string
+            format: SeriesInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.8
+        - name: sop-instance-uid
+          in: path
+          description: SOPInstanceUID from series
+          required: true
+          schema:
+            type: string
+            format: SOPInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.9
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceAnnotation'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /predictions/{model-uid}/studies/{study-uid}:
+    get:
+      tags:
+        - Predictions
+      summary: Get prediction for study
+      description: |
+        Should return prediction data for a given study.
+      operationId: getPredictionForStudyies
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyPrediction'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /predictions/{model-uid}/studies/{study-uid}/series/{series-uid}:
+    get:
+      tags:
+        - Predictions
+      summary: Get prediction for series
+      description: |
+        Should return prediction data for a given series.
+      operationId: getPredictionForSeries
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+        - name: series-uid
+          in: path
+          description: SeriesInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: SeriesInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.8
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeriesPrediction'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+  /predictions/{model-uid}/studies/{study-uid}/series/{series-uid}/instances/{sop-instance-uid}:
+    get:
+      tags:
+        - Predictions
+      summary: Get prediction for instance
+      description: |
+        Should return segmentation data for a given instance.
+      operationId: getPredictionForInstance
+      parameters:
+        - name: model-uid
+          in: path
+          description: UID of the model
+          required: true
+          schema:
+            type: string
+        - name: study-uid
+          in: path
+          description: StudyInstanceUID from DICOM metadata
+          required: true
+          schema:
+            type: string
+            format: StudyInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095438.5
+        - name: series-uid
+          in: path
+          description: SeriesInstanceUID from study
+          required: true
+          schema:
+            type: string
+            format: SeriesInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.8
+        - name: sop-instance-uid
+          in: path
+          description: SOPInstanceUID from series
+          required: true
+          schema:
+            type: string
+            format: SOPInstanceUID
+            example: 1.3.6.1.4.1.25403.345050719074.3824.20170125095449.9
+      security:
+        - main_auth:
+            - read:model
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstancePrediction'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: You have no access to this model
+        '404':
+          description: Data not found
+          $ref: '#/components/responses/Problem'
+          content:
+            application/json:
+              example:
+                message: Not found
+components:
+  securitySchemes:
+    main_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://example.com/api/oauth/dialog
+          scopes:
+            read:models: read users info
+    api_key:
+      type: apiKey
+      in: header
+      name: api_key
+  schemas:
+    Metadata:
+      description: Metadata Object
+      type: object
+      properties:
+        dataType:
+          required: true
+          type: string
+          enum:
+            - percentage
+            - date
+            - text
+            - number
+          example: percentage
+        value:
+          required: true
+          type:
+            - string
+            - number
+          example: 12
+        title:
+          required: true
+          type: string
+          example: Risk
+        description:
+          type: string
+          example: Risk of patient having a malignant tumor
+    Segment:
+      description: Segment definition (one slide)
+      type: object
+      properties:
+        points:
+          required: true
+          type: array
+          name: Points Array
+          items:
+            type: array
+            items:
+              type: integer
+          example: '[ [ 0,0,1,0 ], [ 0,1,1,0 ] ]'
+        color:
+          type: string
+          format: RGB
+          required: true
+          example: rgb(120, 80, 40)
+        classColor:
+          type: string
+          format: RGB
+          example: rgb(120, 80, 40)
+        activeColor:
+          type: string
+          format: RGB
+          example: rgb(120, 80, 40)
+        className:
+          type: string
+          required: true
+          example: Lung
+        description:
+          type: string
+    Frame:
+      description: Slice frame
+      type: object
+      properties:
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Segment'
+        metadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadata'
+    StudySegmentation:
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          additionalProperties:
+            type: object
+            x-additionalPropertiesName: SeriesInstanceUID
+            additionalProperties:
+              type: object
+              x-additionalPropertiesName: SOPInstanceUID
+              $ref: '#/components/schemas/Frame'
+            properties:
+              metadata:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Metadata'
+          properties:
+            metadata:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metadata'
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      doNotRender: true
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
+    SeriesSegmentation:
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          properties:
+            SeriesInstanceUID:
+              type: object
+              additionalProperties:
+                type: object
+                x-additionalPropertiesName: SOPInstanceUID
+                $ref: '#/components/schemas/Frame'
+              properties:
+                metadata:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Metadata'
+            metadata:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metadata'
+    InstanceSegmentation:
+      description: Segmentation object
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          properties:
+            SeriesInstanceUID:
+              type: object
+              properties:
+                SOPInstanceUID:
+                  $ref: '#/components/schemas/Frame'
+                metadata:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Metadata'
+            metadata:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metadata'
+    RoiPoints:
+      type: array
+      items:
+        type: array
+        length: 2
+        items:
+          type: integer
+      example:
+        - - 120
+          - 130
+        - - 110
+          - 130
+        - - 75
+          - 100
+    Annotation:
+      description: Annotation definition (one slide)
+      type: object
+      properties:
+        points:
+          $ref: '#/components/schemas/RoiPoints'
+        color:
+          type: string
+          format: RGB
+          example: rgb(120, 80, 40)
+        classColor:
+          type: string
+          format: RGB
+          example: rgb(120, 80, 40)
+        activeColor:
+          type: string
+          format: RGB
+          example: rgb(120, 80, 40)
+        className:
+          type: string
+          example: Lung
+        description:
+          type: string
+    AnnotationFrame:
+      description: Slice frame
+      type: object
+      properties:
+        rois:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
+    StudyAnnotation:
+      type: object
+      properties:
+        '{StudyInstanceUID}':
+          type: object
+          additionalProperties:
+            type: object
+            x-additionalPropertiesName: SeriesInstanceUID
+            additionalProperties:
+              type: object
+              x-additionalPropertiesName: SOPInstanceUID
+              $ref: '#/components/schemas/AnnotationFrame'
+    SeriesAnnotation:
+      type: object
+      properties:
+        StudyInstanceUID}:
+          type: object
+          properties:
+            SeriesInstanceUID-1:
+              type: object
+              additionalProperties:
+                type: object
+                x-additionalPropertiesName: SOPInstanceUID
+                $ref: '#/components/schemas/AnnotationFrame'
+    InstanceAnnotation:
+      description: Annotation object
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          properties:
+            SeriesInstanceUID:
+              type: object
+              properties:
+                SOPInstanceUID:
+                  $ref: '#/components/schemas/AnnotationFrame'
+    StudyPrediction:
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          properties:
+            metadata:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metadata'
+    SeriesPrediction:
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          properties:
+            SeriesInstanceUID:
+              type: object
+              properties:
+                metadata:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Metadata'
+            metadata:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metadata'
+    InstancePrediction:
+      description: Segmentation object
+      type: object
+      properties:
+        StudyInstanceUID:
+          type: object
+          properties:
+            SeriesInstanceUID:
+              type: object
+              properties:
+                SOPInstanceUID:
+                  type: object
+                  properties:
+                    metadata:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Metadata'
+                metadata:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Metadata'
+            metadata:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metadata'
+  responses:
+    Problem:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
