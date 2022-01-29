@@ -99,7 +99,14 @@ paths:
           description: UID of the model
           required: true
           schema:
-            type: string
+            required: true
+            type: array
+            name: Points Array
+            items:
+              type: array
+              items:
+                type: integer
+            example: '[ [ 0,0,1,0 ], [ 0,1,1,0 ] ]'
         - name: study-uid
           in: path
           description: StudyInstanceUID from DICOM metadata
