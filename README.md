@@ -21,11 +21,11 @@
 
 ### On my blog
 <!-- blog starts -->
+* [XAI Methods - Guided GradCAM](https://erdem.pl/2022/04/xai-methods-guided-grad-cam) - Apr 18 2022
+* [XAI Methods - Integrated Gradients](https://erdem.pl/2022/04/xai-methods-integrated-gradients) - Apr 18 2022
+* [XAI Methods - Noise Tunnel](https://erdem.pl/2022/04/xai-methods-noise-tunnel) - Apr 18 2022
 * [XAI Methods - Guided Backpropagation](https://erdem.pl/2022/02/xai-methods-guided-backpropagation) - Feb 22 2022
 * [XAI Methods - Deconvolution](https://erdem.pl/2022/02/xai-methods-deconvolution) - Feb 21 2022
-* [XAI Methods - Saliency](https://erdem.pl/2022/02/xai-methods-saliency) - Feb 21 2022
-* [XAI Methods - The Introduction](https://erdem.pl/2021/10/xai-methods-the-introduction) - Oct 12 2021
-* [Introduction to Attention Mechanism](https://erdem.pl/2021/05/introduction-to-attention-mechanism) - May 12 2021
 <!-- blog ends -->
 More on [erdem.pl](https://erdem.pl/) or [Medium](https://medium.com/@kemalpiro)
 </td></tr></table>
