@@ -111,7 +111,6 @@ async def generate_stats() -> None:
             user,
             access_token,
             session,
-            exclude_langs=excluded_langs,
         )
         await asyncio.gather(generate_languages(s), generate_overview(s))
 
