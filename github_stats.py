@@ -60,15 +60,19 @@ class Queries(object):
         except:
             print("aiohttp failed for GraphQL query")
             # Fall back on non-async requests
-            async with self.semaphore:
-                r_requests = requests.post(
-                    "https://api.github.com/graphql",
-                    headers=headers,
-                    json={"query": generated_query},
-                )
-                result = r_requests.json()
-                if result is not None:
-                    return result
+
+            try:
+                async with self.semaphore:
+                    r_requests = requests.post(
+                        "https://api.github.com/graphql",
+                        headers=headers,
+                        json={"query": generated_query},
+                    )
+                    result = r_requests.json()
+                    if result is not None:
+                        return result
+            except:
+                print("sync aiohttp failed for GraphQL query")
         return dict()
 
     async def query_rest(self, path: str, params: Optional[Dict] = None) -> Dict:
@@ -277,7 +281,6 @@ class Stats(object):
         self._total_contributions: Optional[int] = None
         self._languages: Optional[Dict[str, Any]] = None
         self._repos: Optional[Set[str]] = None
-        self._lines_changed: Optional[Tuple[int, int]] = None
         self._views: Optional[int] = None
 
     async def to_str(self) -> str:
@@ -288,15 +291,11 @@ class Stats(object):
         formatted_languages = "\n  - ".join(
             [f"{k}: {v:0.4f}%" for k, v in languages.items()]
         )
-        lines_changed = await self.lines_changed
         return f"""Name: {await self.name}
 Stargazers: {await self.stargazers:,}
 Forks: {await self.forks:,}
 All-time contributions: {await self.total_contributions:,}
 Repositories with contributions: {len(await self.repos)}
-Lines of code added: {lines_changed[0]:,}
-Lines of code deleted: {lines_changed[1]:,}
-Lines of code changed: {lines_changed[0] + lines_changed[1]:,}
 Project page views: {await self.views:,}
 Languages:
   - {formatted_languages}"""
@@ -382,9 +381,10 @@ Languages:
 
         # TODO: Improve languages to scale by number of contributions to
         #       specific filetypes
-        langs_total = sum([v.get("size", 0) for v in self._languages.values()])
+        langs_total_count = sum([v.get("occurrences", 0) for v in self._languages.values()])
+        langs_total_size = sum([v.get("size", 0) for v in self._languages.values()])
         for k, v in self._languages.items():
-            v["prop"] = 100 * (v.get("size", 0) / langs_total)
+            v["prop"] = 100 * ((v.get("size", 0) / langs_total_size) + (v.get("occurrences", 0) / langs_total_count))/2
 
     @property
     async def name(self) -> str:
@@ -479,35 +479,6 @@ Languages:
                 "totalContributions", 0
             )
         return cast(int, self._total_contributions)
-
-    @property
-    async def lines_changed(self) -> Tuple[int, int]:
-        """
-        :return: count of total lines added, removed, or modified by the user
-        """
-        if self._lines_changed is not None:
-            return self._lines_changed
-        additions = 0
-        deletions = 0
-        for repo in await self.repos:
-            r = await self.queries.query_rest(f"/repos/{repo}/stats/contributors")
-            for author_obj in r:
-                # Handle malformed response from the API by skipping this repo
-                if not isinstance(author_obj, dict) or not isinstance(
-                    author_obj.get("author", {}), dict
-                ):
-                    continue
-                author = author_obj.get("author", {}).get("login", "")
-                if author != self.username:
-                    continue
-
-                for week in author_obj.get("weeks", []):
-                    additions += week.get("a", 0)
-                    deletions += week.get("d", 0)
-
-        self._lines_changed = (additions, deletions)
-        return self._lines_changed
-
     @property
     async def views(self) -> int:
         """
@@ -544,7 +515,6 @@ async def main() -> None:
         )
     async with aiohttp.ClientSession() as session:
         s = Stats(user, access_token, session)
-        print(await s.to_str())
 
 
 if __name__ == "__main__":

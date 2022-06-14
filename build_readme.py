@@ -20,6 +20,15 @@ def replace_chunk(content, marker, chunk):
     return r.sub(chunk, content)
 
 
+def human_format(num):
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    # add more suffixes if you need them
+    return '%.2f%s' % (num, ['', 'K', 'M', 'G', 'T', 'P'][magnitude])
+
+
 def fetch_blog_entries():
     return [
         {
@@ -30,6 +39,15 @@ def fetch_blog_entries():
         for entry in feedparser.parse("https://erdem.pl/rss.xml")["entries"]
     ]
 
+
+def generate_output_folder() -> None:
+    """
+    Create the output folder if it does not already exist
+    """
+    if not os.path.isdir("generated"):
+        os.mkdir("generated")
+
+
 async def generate_overview(s: Stats) -> None:
     """
     Generate an SVG badge with summary statistics
@@ -39,11 +57,9 @@ async def generate_overview(s: Stats) -> None:
         output = f.read()
 
     output = re.sub("{{ name }}", await s.name, output)
-    output = re.sub("{{ stars }}", f"{await s.stargazers:,}", output)
-    output = re.sub("{{ forks }}", f"{await s.forks:,}", output)
-    output = re.sub("{{ contributions }}", f"{await s.total_contributions:,}", output)
-    changed = (await s.lines_changed)[0] + (await s.lines_changed)[1]
-    output = re.sub("{{ lines_changed }}", f"{changed:,}", output)
+    output = re.sub("{{ stars }}", f"{human_format(await s.stargazers)}", output)
+    output = re.sub("{{ forks }}", f"{human_format(await s.forks)}", output)
+    output = re.sub("{{ contributions }}", f"{human_format(await s.total_contributions)}", output)
     output = re.sub("{{ views }}", f"{await s.views:,}", output)
     output = re.sub("{{ repos }}", f"{len(await s.repos):,}", output)
 
@@ -63,7 +79,7 @@ async def generate_languages(s: Stats) -> None:
     progress = ""
     lang_list = ""
     sorted_languages = sorted(
-        (await s.languages).items(), reverse=True, key=lambda t: t[1].get("size")
+        (await s.languages).items(), reverse=True, key=lambda t: t[1].get("prop")
     )
     delay_between = 150
     for i, (lang, data) in enumerate(sorted_languages):
@@ -103,7 +119,7 @@ async def generate_stats() -> None:
 
     exclude_langs = os.getenv("EXCLUDED_LANGS")
     excluded_langs = (
-        {x.strip() for x in exclude_langs.split(",")} if exclude_langs else None
+        {x.strip() for x in exclude_langs.split(",")} if exclude_langs else {'jupyter notebook', 'html', 'css', 'java'}
     )
 
     async with aiohttp.ClientSession() as session:
@@ -111,6 +127,7 @@ async def generate_stats() -> None:
             user,
             access_token,
             session,
+            exclude_langs=excluded_langs,
         )
         await asyncio.gather(generate_languages(s), generate_overview(s))
 
