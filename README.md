@@ -30,8 +30,9 @@
 More on [erdem.pl](https://erdem.pl/) or [Medium](https://medium.com/@kemalpiro)
 </td></tr></table>
 
-![](https://raw.githubusercontent.com/burnpiro/burnpiro/master/generated/overview.svg#gh-dark-mode-only)
-![](https://raw.githubusercontent.com/burnpiro/burnpiro/master/generated/overview.svg#gh-light-mode-only)
-
-![](https://raw.githubusercontent.com/burnpiro/burnpiro/master/generated/languages.svg#gh-dark-mode-only)
-![](https://raw.githubusercontent.com/burnpiro/burnpiro/master/generated/languages.svg#gh-light-mode-only)
+<p id="test"  float="left">
+<img width="49%" src="https://github.com/burnpiro/burnpiro/blob/master/generated/overview.svg#gh-dark-mode-only" />
+<img width="49%" src="https://github.com/burnpiro/burnpiro/blob/master/generated/overview.svg#gh-light-mode-only" />
+<img width="49%" src="https://github.com/burnpiro/burnpiro/blob/master/generated/languages.svg#gh-dark-mode-only" />
+<img width="49%" src="https://github.com/burnpiro/burnpiro/blob/master/generated/languages.svg#gh-light-mode-only" />  
+ </p>
