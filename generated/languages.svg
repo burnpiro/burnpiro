@@ -113,7 +113,7 @@
 
                     <div>
                         <span class="progress">
-                            <span style="background-color: #f1e05a;width: 60.512%;" class="progress-item"></span><span style="background-color: #3572A5;width: 10.157%;" class="progress-item"></span><span style="background-color: #3178c6;width: 10.135%;" class="progress-item"></span><span style="background-color: #c6538c;width: 6.284%;" class="progress-item"></span><span style="background-color: #89e051;width: 3.019%;" class="progress-item"></span><span style="background-color: #384d54;width: 2.975%;" class="progress-item"></span><span style="background-color: #3D6117;width: 2.098%;" class="progress-item"></span><span style="background-color: #438eff;width: 0.870%;" class="progress-item"></span><span style="background-color: #427819;width: 0.848%;" class="progress-item"></span><span style="background-color: #882B0F;width: 0.537%;" class="progress-item"></span><span style="background-color: #555555;width: 0.434%;" class="progress-item"></span><span style="background-color: #f0c040;width: 0.429%;" class="progress-item"></span><span style="background-color: #000080;width: 0.426%;" class="progress-item"></span><span style="background-color: #178600;width: 0.426%;" class="progress-item"></span><span style="background-color: #000000;width: 0.425%;" class="progress-item"></span><span style="background-color: #4F5D95;width: 0.425%;" class="progress-item"></span>
+                            <span style="background-color: #f1e05a;width: 60.472%;" class="progress-item"></span><span style="background-color: #3178c6;width: 10.181%;" class="progress-item"></span><span style="background-color: #3572A5;width: 10.155%;" class="progress-item"></span><span style="background-color: #c6538c;width: 6.282%;" class="progress-item"></span><span style="background-color: #89e051;width: 3.019%;" class="progress-item"></span><span style="background-color: #384d54;width: 2.975%;" class="progress-item"></span><span style="background-color: #3D6117;width: 2.097%;" class="progress-item"></span><span style="background-color: #438eff;width: 0.870%;" class="progress-item"></span><span style="background-color: #427819;width: 0.848%;" class="progress-item"></span><span style="background-color: #882B0F;width: 0.536%;" class="progress-item"></span><span style="background-color: #555555;width: 0.434%;" class="progress-item"></span><span style="background-color: #f0c040;width: 0.429%;" class="progress-item"></span><span style="background-color: #000080;width: 0.426%;" class="progress-item"></span><span style="background-color: #178600;width: 0.426%;" class="progress-item"></span><span style="background-color: #000000;width: 0.425%;" class="progress-item"></span><span style="background-color: #4F5D95;width: 0.425%;" class="progress-item"></span>
                         </span>
                     </div>
 
@@ -125,23 +125,23 @@
 viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
 fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
 <span class="lang">JavaScript</span>
-<span class="percent">60.51%</span>
+<span class="percent">60.47%</span>
 </li>
 
 <li style="animation-delay: 150ms;">
-<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#3572A5;"
-viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
-fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
-<span class="lang">Python</span>
-<span class="percent">10.16%</span>
-</li>
-
-<li style="animation-delay: 300ms;">
 <svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#3178c6;"
 viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
 fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
 <span class="lang">TypeScript</span>
-<span class="percent">10.14%</span>
+<span class="percent">10.18%</span>
+</li>
+
+<li style="animation-delay: 300ms;">
+<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#3572A5;"
+viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
+fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+<span class="lang">Python</span>
+<span class="percent">10.15%</span>
 </li>
 
 <li style="animation-delay: 450ms;">
