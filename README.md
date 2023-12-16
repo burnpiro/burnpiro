@@ -11,11 +11,11 @@
 
 ### About me
 
-- :notebook: I'm a software engineer
-- :pushpin: Interests: **Machine Learning**, **Data Science**, IoT, **Web Applications**
-- :computer: Languages and Tools: <img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/pytorch.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/tf-logo.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/python.png" /><img style="line-height: 20" height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/javascript.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/nodejs.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/ubuntu.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/github.png" />
-- :microscope: If you want to check my recent project/talks/staff check out [My Work](https://erdem.pl/pages/work) section on the website
-- :bicyclist: When not working/learning I'm probably on the bike... somewhere
+- 📓 I'm a software engineer
+- 📌 Interests: **Machine Learning**, **Data Science**, IoT, **Web Applications**
+- 💻 Languages and Tools: <img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/pytorch.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/tf-logo.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/python.png" /><img style="line-height: 20" height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/javascript.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/nodejs.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/ubuntu.png" /><img height="30" src="https://raw.githubusercontent.com/burnpiro/burnpiro/master/images/github.png" />
+- 🔬 If you want to check my recent project/talks/staff check out [My Work](https://erdem.pl/pages/work) section on the website
+- 🚴 When not working/learning I'm probably on the bike... somewhere
 
 </td><td valign="top" width="50%">
 
