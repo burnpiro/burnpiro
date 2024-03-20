@@ -22,9 +22,9 @@
 ### On my blog
 <!-- blog starts -->
 * [Step by Step visual introduction to Diffusion Models.](https://erdem.pl/2023/11/step-by-step-visual-introduction-to-diffusion-models) - Nov 01 2023
-* [XAI Methods - Integrated Gradients](https://erdem.pl/2022/04/xai-methods-integrated-gradients) - Apr 18 2022
-* [XAI Methods - Noise Tunnel](https://erdem.pl/2022/04/xai-methods-noise-tunnel) - Apr 18 2022
 * [XAI Methods - Guided GradCAM](https://erdem.pl/2022/04/xai-methods-guided-grad-cam) - Apr 18 2022
+* [XAI Methods - Noise Tunnel](https://erdem.pl/2022/04/xai-methods-noise-tunnel) - Apr 18 2022
+* [XAI Methods - Integrated Gradients](https://erdem.pl/2022/04/xai-methods-integrated-gradients) - Apr 18 2022
 * [XAI Methods - Guided Backpropagation](https://erdem.pl/2022/02/xai-methods-guided-backpropagation) - Feb 22 2022
 <!-- blog ends -->
 More on [erdem.pl](https://erdem.pl/) or [Medium](https://medium.com/@kemalpiro)
